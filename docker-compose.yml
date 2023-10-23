@@ -1,0 +1,24 @@
+version: '3'
+services:
+  prestashop:
+    image: prestashop/prestashop
+    container_name: prestashop
+    ports:
+      - "8080:80"
+    links:
+      - mysql
+    environment:
+      - DB_SERVER=mysql
+      - DB_NAME=prestashop
+      - DB_USER=prestashop
+      - DB_PASSWD=1234
+      - PS_MODE=development
+
+  mysql:
+    image: mysql:5.7
+    container_name: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=1234
+      - MYSQL_DATABASE=prestashop
+      - MYSQL_USER=prestashop
+      - MYSQL_PASSWORD=1234
